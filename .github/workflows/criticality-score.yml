@@ -15,6 +15,9 @@ jobs:
           cache: true        # automatically caches dependencies
 
       - name: Run criticality score
+        shell: bash
         run: |
           go install github.com/ossf/criticality_score/v2/cmd/criticality_score@latest
           criticality_score https://github.com/DSACMS/metrics
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
