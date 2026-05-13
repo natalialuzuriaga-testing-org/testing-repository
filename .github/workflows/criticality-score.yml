@@ -20,4 +20,4 @@ jobs:
           go install github.com/ossf/criticality_score/v2/cmd/criticality_score@latest
           criticality_score -depsdev-disable https://github.com/DSACMS/repo-scaffolder
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
