@@ -14,6 +14,15 @@ on:
       org_name:
         description: 'GitHub organization name'
         required: true
+      visibility:
+        description: 'Which repos to scan: all, public, or private'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - public
+          - private
 
 permissions:
   contents: write
@@ -30,9 +39,10 @@ jobs:
           fetch-depth: 0
       - name: Run archival-identifier
         id: archive
-        uses: DSACMS/archival-identifier@main
+        uses: natalialuzuriaga/archival-identifier-test-repo@main
         with:
           START_DATE: ${{ inputs.start_date }}
           END_DATE: ${{ inputs.end_date }}
           ORG_NAME: ${{ inputs.org_name }}
           GITHUB_ORG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VISIBILITY: ${{ inputs.visibility }}
